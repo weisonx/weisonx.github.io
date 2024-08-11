@@ -6,4 +6,4 @@
 ## OneNote笔记
 
 ### study
-- [考试和八股文](OneNote/study/考试和八股文.pdf)
+- [考试和八股文](https://github.com/weisonx/weisonx.github.io/tree/main/OneNote/study/考试与八股文.pdf)
