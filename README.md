@@ -1,14 +1,19 @@
-## [Github](https://github.com/weisonx)
+# [Github](https://github.com/weisonx)
 
-## 社区
-- [CSDN](https://blog.csdn.net/weison_x)
+# Community
 
-## OneNote笔记
+> - [CSDN](https://blog.csdn.net/weison_x)
+
+# OneNote
 
 ### study
-- [考试和八股文](https://github.com/weisonx/weisonx.github.io/tree/main/OneNote/study/考试与八股文.pdf)
 
-## ChatGPT
+> - [考试和八股文](https://github.com/weisonx/weisonx.github.io/tree/main/OneNote/study/考试与八股文.pdf)
 
-### 算法与数据结构
-- [设计模式-ChatGPT4o-mini-加深印象](https://github.com/weisonx/weisonx.github.io/blob/main/ChatGPT/算法与数据结构/设计模式-ChatGPT4o-mini-加深印象.cpp)
+### opt
+
+> - [算法]()
+
+# ChatGPT
+
+> - [设计模式-ChatGPT4o-mini-加深印象](https://github.com/weisonx/weisonx.github.io/blob/main/ChatGPT/算法与数据结构/设计模式-ChatGPT4o-mini-加深印象.cpp)
