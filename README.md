@@ -12,7 +12,7 @@
 
 ### opt
 
-> - [算法]()
+> - [算法](https://github.com/weisonx/weisonx.github.io/tree/main/OneNote/opt/算法.pdf)
 
 # ChatGPT
 
