@@ -2,7 +2,13 @@
 
 # Community
 
+### my
 > - [CSDN](https://blog.csdn.net/weison_x)
+
+### frontier technology community
+> - [qt forum](https://forum.qt.io/) 
+> - [qt chinese forum](https://forum.qt.io/category/37/chinese)
+> - [qter](https://www.qter.org/forum.php)
 
 # OneNote
 
