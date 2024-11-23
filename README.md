@@ -21,6 +21,8 @@
 # ChatGPT
 > - [设计模式-ChatGPT4o-mini-加深印象](https://github.com/weisonx/weisonx.github.io/blob/main/ChatGPT/算法与数据结构/设计模式-ChatGPT4o-mini-加深印象.cpp)
 
+---
+
 # C++全栈知识体系(todo)
 
 ### C++基础
@@ -49,7 +51,9 @@
 
 ### 设计模式
 
-### 系统设计
+### 系统设计基础理论
+
+### 设计实践
 
 # Qt精通之路
 
