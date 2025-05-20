@@ -294,3 +294,61 @@ void MainWindow::updateProgress(int value) {
 [5]: https://en.wikipedia.org/wiki/Signals_and_slots?utm_source=chatgpt.com "Signals and slots"
 [6]: https://www.qtcentre.org/threads/59020-GUI-with-worker-thread-signal-slot-communication-elaboration?utm_source=chatgpt.com "GUI with worker thread, signal/slot communication elaboration"
 [7]: https://www.reddit.com/r/QtFramework/comments/1bqctpf/2nd_thread_causes_maingui_thread_to_hang/?utm_source=chatgpt.com "2nd thread causes main/gui thread to hang : r/QtFramework - Reddit"
+
+
+在 Qt 中，**将自身对象（即 `this` 指针）移动到另一个线程**（通过在 `WorkThread` 的构造函数或其他成员函数中调用 `this->moveToThread(this)`）是一种不推荐的做法，可能导致不可预测的行为和程序崩溃。这是因为 `QThread` 的成员函数最初设计为从创建它的线程（通常是主线程）调用，而不是从其自身线程调用。&#x20;
+
+**推荐的做法**是：
+
+1. **创建一个新的 `QObject` 子类（例如，`Worker`）**：在其中实现需要在子线程中执行的功能。
+
+2. **实例化 `Worker` 对象并将其移动到子线程**：使用 `worker->moveToThread(thread)` 将 `Worker` 对象移动到新创建的 `QThread` 实例中。
+
+3. **建立信号和槽的连接**：确保在主线程和子线程之间正确地传递信息。
+
+4. **启动线程**：调用 `thread->start()` 启动子线程。
+
+以下是一个示例代码，演示了如何正确地在 Qt 中使用 `QThread` 和 `QObject` 进行线程管理：
+
+```cpp
+#include <QThread>
+#include <QObject>
+#include <QDebug>
+
+// 工作对象，包含需要在子线程中执行的功能
+class Worker : public QObject {
+    Q_OBJECT
+public slots:
+    void process() {
+        qDebug() << "Worker thread ID:" << QThread::currentThreadId();
+        // 执行耗时操作...
+        emit finished();
+    }
+signals:
+    void finished();
+};
+
+int main(int argc, char *argv[]) {
+    QCoreApplication app(argc, argv);
+
+    QThread* thread = new QThread;
+    Worker* worker = new Worker;
+
+    worker->moveToThread(thread);
+
+    QObject::connect(thread, &QThread::started, worker, &Worker::process);
+    QObject::connect(worker, &Worker::finished, thread, &QThread::quit);
+    QObject::connect(worker, &Worker::finished, worker, &QObject::deleteLater);
+    QObject::connect(thread, &QThread::finished, thread, &QObject::deleteLater);
+
+    thread->start();
+
+    return app.exec();
+}
+```
+
+
+
+在上述示例中，`Worker` 对象被正确地移动到子线程中，并通过信号和槽机制与主线程进行通信。这种方式确保了线程的稳定性和可预测性，避免了将 `QThread` 对象自身移动到其线程中可能引发的问题。
+
+总之，避免在 `QThread` 的成员函数中调用 `this->moveToThread(this)`，而是创建一个独立的 `QObject` 子类，并将其实例移动到子线程中，以确保线程间通信的安全和稳定。
