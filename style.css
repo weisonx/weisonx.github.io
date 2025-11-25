@@ -1,18 +1,45 @@
 :root {
+    /* --- 深色模式 (默认 / Cyberpunk) --- */
     --bg-color: #0f172a;
     --text-primary: #f8fafc;
     --text-secondary: #94a3b8;
+    
     --accent-color: #06b6d4; /* 赛博青 */
     --accent-glow: rgba(6, 182, 212, 0.5);
+    
     --card-bg: rgba(30, 41, 59, 0.4);
+    --card-hover-bg: rgba(30, 41, 59, 0.8);
     --card-border: rgba(255, 255, 255, 0.1);
+    --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     --glass-blur: 12px;
+    
+    --nav-bg: rgba(15, 23, 42, 0.6);
+    --footer-border: rgba(255, 255, 255, 0.1);
+}
+
+/* --- 浅色模式 (Clean / Tech) --- */
+[data-theme="light"] {
+    --bg-color: #f1f5f9;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    
+    --accent-color: #0284c7; /* 深天蓝，在浅色背景对比度更好 */
+    --accent-glow: rgba(2, 132, 199, 0.3);
+    
+    --card-bg: rgba(255, 255, 255, 0.6);
+    --card-hover-bg: rgba(255, 255, 255, 0.95);
+    --card-border: rgba(0, 0, 0, 0.05);
+    --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    
+    --nav-bg: rgba(241, 245, 249, 0.7);
+    --footer-border: rgba(0, 0, 0, 0.1);
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* 平滑过渡 */
 }
 
 body {
@@ -21,6 +48,7 @@ body {
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
     min-height: 100vh;
+    transition: color 0.3s ease;
 }
 
 /* --- 粒子背景 --- */
@@ -44,7 +72,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 1.5rem 3rem;
-    background: rgba(15, 23, 42, 0.6);
+    background: var(--nav-bg);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--card-border);
     position: sticky;
@@ -57,9 +85,34 @@ body {
     font-size: 1.5rem;
     font-weight: 700;
     letter-spacing: 2px;
+    color: var(--text-primary);
 }
 
 .logo span { color: var(--accent-color); }
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+/* 主题切换按钮 */
+#theme-toggle {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: transform 0.3s, color 0.3s;
+}
+
+#theme-toggle:hover {
+    color: var(--accent-color);
+    transform: rotate(15deg);
+    background: rgba(125,125,125,0.1);
+}
 
 .social-links {
     list-style: none;
@@ -80,7 +133,7 @@ body {
 
 /* --- 主容器 --- */
 .container {
-    max-width: 1000px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 3rem 1.5rem;
 }
@@ -107,7 +160,6 @@ body {
     object-fit: cover;
 }
 
-/* 呼吸灯光环 */
 .status-ring {
     position: absolute;
     inset: -5px;
@@ -121,9 +173,7 @@ h1 {
     font-family: 'Orbitron', sans-serif;
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
-    background: linear-gradient(to right, #fff, #94a3b8);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--text-primary);
 }
 
 .typing-container {
@@ -132,6 +182,7 @@ h1 {
     font-size: 1.1rem;
     margin-bottom: 1rem;
     min-height: 1.5em;
+    font-weight: 600;
 }
 
 .cursor { animation: blink 1s infinite; }
@@ -158,10 +209,11 @@ h1 {
     padding: 1.5rem;
     text-align: center;
     backdrop-filter: blur(var(--glass-blur));
-    transition: transform 0.3s;
+    transition: transform 0.3s, background 0.3s;
+    box-shadow: var(--card-shadow);
 }
 
-.stat-card:hover { transform: translateY(-5px); background: rgba(30,41,59,0.6); }
+.stat-card:hover { transform: translateY(-5px); background: var(--card-hover-bg); }
 .stat-num { font-size: 2rem; font-weight: 700; color: var(--text-primary); display: block;}
 .stat-label { font-size: 0.85rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; margin-top: 0.5rem; }
 
@@ -172,15 +224,16 @@ h1 {
     font-size: 1.5rem;
     border-left: 4px solid var(--accent-color);
     padding-left: 1rem;
+    color: var(--text-primary);
 }
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    /* 响应式网格，适配更多卡片 */
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 1.5rem;
 }
 
-/* 项目卡片 */
 .card {
     background: var(--card-bg);
     border: 1px solid var(--card-border);
@@ -192,13 +245,15 @@ h1 {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    text-decoration: none; /* Reset for anchor tags */
+    text-decoration: none;
+    box-shadow: var(--card-shadow);
 }
 
 .card:hover {
     transform: translateY(-5px);
     border-color: var(--accent-color);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), 0 0 20px rgba(6, 182, 212, 0.1);
+    background: var(--card-hover-bg);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1), 0 0 15px var(--accent-glow);
 }
 
 /* 卡片顶部闪光条 */
@@ -246,10 +301,10 @@ h1 {
     margin-right: 5px;
 }
 
-/* Loading 骨架屏动画 */
+/* 骨架屏 - 适配浅色模式 */
 .skeleton {
-    height: 150px;
-    background: linear-gradient(90deg, var(--card-bg) 25%, rgba(255,255,255,0.05) 50%, var(--card-bg) 75%);
+    height: 160px;
+    background: linear-gradient(90deg, var(--card-bg) 25%, var(--card-border) 50%, var(--card-bg) 75%);
     background-size: 200% 100%;
     animation: loading 1.5s infinite;
 }
@@ -259,17 +314,19 @@ footer {
     padding: 3rem;
     color: var(--text-secondary);
     font-size: 0.9rem;
-    border-top: 1px solid var(--card-border);
+    border-top: 1px solid var(--footer-border);
     margin-top: 4rem;
 }
 
-/* 动画关键帧 */
 @keyframes blink { 50% { opacity: 0; } }
-@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(6, 182, 212, 0); } 100% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0); } }
+@keyframes pulse { 
+    0% { box-shadow: 0 0 0 0 var(--accent-glow); } 
+    70% { box-shadow: 0 0 0 10px rgba(0,0,0,0); } 
+    100% { box-shadow: 0 0 0 0 rgba(0,0,0,0); } 
+}
 @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
 
-/* 移动端适配 */
 @media (max-width: 768px) {
     .glass-nav { padding: 1rem; }
     h1 { font-size: 1.8rem; }
