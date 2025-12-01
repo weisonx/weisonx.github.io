@@ -3,73 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weisonx | Developer Portfolio</title>
+    <title>Weisonx | Developer</title>
     <link rel="stylesheet" href="style.css">
-    <!-- 字体：Orbitron (科幻/技术) 和 Inter (阅读) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-    <!-- 图标库 -->
+    <!-- 只保留 Inter 字体，符合 Apple 设计语言 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- 动态粒子背景 -->
-    <canvas id="bg-canvas"></canvas>
-
-    <div class="overlay">
-        <!-- 头部导航 -->
-        <nav class="glass-nav">
-            <div class="logo">Weisonx<span>.IO</span></div>
-            <div class="nav-actions">
-                <!-- 主题切换按钮 -->
-                <button id="theme-toggle" aria-label="Toggle Theme">
-                    <i class="fas fa-sun" id="theme-icon"></i>
-                </button>
-                <ul class="social-links">
-                    <li><a href="https://github.com/weisonx" target="_blank"><i class="fab fa-github"></i></a></li>
-                    <li><a href="mailto:your-email@example.com"><i class="fas fa-envelope"></i></a></li>
-                </ul>
-            </div>
-        </nav>
-
-        <!-- 核心区域 -->
-        <main class="container">
-            <!-- 个人简介 -->
-            <section class="hero">
-                <div class="avatar-container">
-                    <img id="avatar" src="https://github.com/github.png" alt="Avatar">
-                    <div class="status-ring"></div>
-                </div>
-                <h1 id="username">Loading...</h1>
-                <div class="typing-container">
-                    <span id="typing-text"></span><span class="cursor">|</span>
-                </div>
-                <p class="bio" id="bio">Connecting to GitHub Satellite...</p>
-            </section>
-
-            <!-- 统计仪表盘 -->
-            <section class="stats-grid" id="stats">
-                <!-- JS将填充这里 -->
-            </section>
-
-            <!-- 项目展示区 -->
-            <section class="projects-section">
-                <h2 class="section-title"><i class="fas fa-code-branch"></i> Top Repositories</h2>
-                <div class="projects-grid" id="repos-container">
-                    <!-- 骨架屏 Loading 效果 (6个) -->
-                    <div class="card skeleton"></div>
-                    <div class="card skeleton"></div>
-                    <div class="card skeleton"></div>
-                    <div class="card skeleton"></div>
-                    <div class="card skeleton"></div>
-                    <div class="card skeleton"></div>
-                </div>
-            </section>
-        </main>
-
-        <footer>
-            <p>Designed with <i class="fas fa-heart" style="color: #ef4444;"></i> & Code. Hosted on GitHub Pages.</p>
-        </footer>
+    <!-- 液态流体背景 -->
+    <div class="ambient-background">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
     </div>
+
+    <!-- 导航 -->
+    <nav class="glass nav-bar">
+        <div class="logo">Weisonx</div>
+        <div class="nav-actions">
+            <button id="theme-toggle" aria-label="Toggle Theme">
+                <i class="fas fa-sun" id="theme-icon"></i>
+            </button>
+            <a href="https://github.com/weisonx" target="_blank" class="nav-link"><i class="fab fa-github"></i></a>
+            <a href="mailto:your-email@example.com" class="nav-link"><i class="fas fa-envelope"></i></a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- 个人简介卡片 -->
+        <section class="hero glass-card">
+            <div class="avatar-wrapper">
+                <img id="avatar" src="https://github.com/github.png" alt="Avatar">
+            </div>
+            <h1 id="username">Loading...</h1>
+            <div class="tagline-container">
+                <span id="typing-text"></span><span class="cursor">|</span>
+            </div>
+            <p class="bio" id="bio">Connecting to GitHub...</p>
+            
+            <!-- 统计数据嵌入在 Hero 卡片中 -->
+            <div class="stats-row" id="stats">
+                <!-- JS 填充 -->
+            </div>
+        </section>
+
+        <!-- 项目展示区 -->
+        <section class="projects-section">
+            <h2 class="section-title">Selected Works</h2>
+            <div class="projects-grid" id="repos-container">
+                <div class="card glass-card skeleton"></div>
+                <div class="card glass-card skeleton"></div>
+                <div class="card glass-card skeleton"></div>
+                <div class="card glass-card skeleton"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="glass-footer">
+        <p>Designed by Weisonx. Crafted with Fluid UI.</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
