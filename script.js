@@ -42,7 +42,7 @@ themeToggleBtn.addEventListener('click', () => {
 });
 
 // --- 2. 打字机效果 (更加极简流畅) ---
-const phrases = ["Developer.", "Designer.", "Creator.", "Engineer."]; // 带句号，更像 Apple 文案
+const phrases = ["工程师", "架构师", "开发者", "Slow is smooth, smooth is fast."]; // 带句号，更像 Apple 文案
 let phraseIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
