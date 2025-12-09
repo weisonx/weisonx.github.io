@@ -216,7 +216,6 @@ h1 {
 
 .bio {
     color: var(--text-secondary);
-    max-width: 500px;
     line-height: 1.6;
     margin-bottom: 2rem;
     font-weight: 400;
