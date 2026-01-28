@@ -11,59 +11,79 @@
 </head>
 <body>
 
-    <!-- 液态流体背景 -->
-    <div class="ambient-background">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
+<!-- 液态流体背景 -->
+<div class="ambient-background">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+</div>
+
+<!-- 导航 -->
+<nav class="glass nav-bar">
+    <div class="logo">Weisonx</div>
+    <div class="nav-actions">
+        <button id="theme-toggle" aria-label="Toggle Theme">
+            <i class="fas fa-sun" id="theme-icon"></i>
+        </button>
+        <a href="https://github.com/weisonx" target="_blank" class="nav-link"><i class="fab fa-github"></i></a>
+        <a href="" class="nav-link"><i class="fas fa-envelope"></i></a>
     </div>
+</nav>
 
-    <!-- 导航 -->
-    <nav class="glass nav-bar">
-        <div class="logo">Weisonx</div>
-        <div class="nav-actions">
-            <button id="theme-toggle" aria-label="Toggle Theme">
-                <i class="fas fa-sun" id="theme-icon"></i>
-            </button>
-            <a href="https://github.com/weisonx" target="_blank" class="nav-link"><i class="fab fa-github"></i></a>
-            <a href="" class="nav-link"><i class="fas fa-envelope"></i></a>
+<main class="container">
+    <!-- 个人简介卡片 -->
+    <section class="hero glass-card">
+        <div class="avatar-wrapper">
+            <img id="avatar" src="https://github.com/github.png" alt="Avatar">
         </div>
-    </nav>
+        <h1 id="username">Loading...</h1>
+        <div class="tagline-container">
+            <span id="typing-text"></span><span class="cursor">|</span>
+        </div>
+        <p class="bio" id="bio">Connecting to GitHub...</p>
 
-    <main class="container">
-        <!-- 个人简介卡片 -->
-        <section class="hero glass-card">
-            <div class="avatar-wrapper">
-                <img id="avatar" src="https://github.com/github.png" alt="Avatar">
-            </div>
-            <h1 id="username">Loading...</h1>
-            <div class="tagline-container">
-                <span id="typing-text"></span><span class="cursor">|</span>
-            </div>
-            <p class="bio" id="bio">Connecting to GitHub...</p>
-            
-            <!-- 统计数据嵌入在 Hero 卡片中 -->
-            <div class="stats-row" id="stats">
-                <!-- JS 填充 -->
-            </div>
-        </section>
+        <!-- 统计数据嵌入在 Hero 卡片中 -->
+        <div class="stats-row" id="stats">
+            <!-- JS 填充 -->
+        </div>
+    </section>
 
-        <!-- 项目展示区 -->
-        <section class="projects-section">
-            <h2 class="section-title">Selected Works</h2>
-            <div class="projects-grid" id="repos-container">
-                <div class="card glass-card skeleton"></div>
-                <div class="card glass-card skeleton"></div>
-                <div class="card glass-card skeleton"></div>
-                <div class="card glass-card skeleton"></div>
+    <!-- 项目展示区 -->
+    <section class="projects-section">
+        <h2 class="section-title">Selected Works</h2>
+        <div class="projects-grid" id="repos-container">
+            <div class="card glass-card skeleton"></div>
+            <div class="card glass-card skeleton"></div>
+            <div class="card glass-card skeleton"></div>
+            <div class="card glass-card skeleton"></div>
+        </div>
+    </section>
+
+    <!-- Home Show 文件展示区 -->
+    <section class="home-show-section">
+        <div class="home-show-header">
+            <h2 class="section-title">Home Show</h2>
+            <div class="home-show-controls">
+                <div class="search-container">
+                    <input type="text" id="file-search" placeholder="搜索文件..." class="search-input">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+                <button id="generate-cards" class="generate-btn">
+                    <i class="fas fa-sync-alt"></i>
+                    重新生成
+                </button>
             </div>
-        </section>
-    </main>
+        </div>
+        <div class="home-show-grid" id="file-cards-container">
+            <!-- 文件卡片将在这里动态生成 -->
+        </div>
+    </section>
+</main>
 
-    <footer class="glass-footer">
-        <p>Designed by Weisonx. Crafted with Fluid UI.</p>
-    </footer>
+<footer class="glass-footer">
+    <p>Designed by Weisonx. Crafted with Fluid UI.</p>
+</footer>
 
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
