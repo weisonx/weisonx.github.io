@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weisonx | Developer</title>
     <link rel="stylesheet" href="style.css">
-    <!-- 只保留 Inter 字体，符合 Apple 设计语言 -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -26,7 +25,7 @@
             <i class="fas fa-sun" id="theme-icon"></i>
         </button>
         <a href="https://github.com/weisonx" target="_blank" class="nav-link"><i class="fab fa-github"></i></a>
-        <a href="" class="nav-link"><i class="fas fa-envelope"></i></a>
+        <a href="mailto:your-email@example.com" class="nav-link"><i class="fas fa-envelope"></i></a>
     </div>
 </nav>
 
@@ -42,7 +41,6 @@
         </div>
         <p class="bio" id="bio">Connecting to GitHub...</p>
 
-        <!-- 统计数据嵌入在 Hero 卡片中 -->
         <div class="stats-row" id="stats">
             <!-- JS 填充 -->
         </div>
@@ -55,7 +53,6 @@
             <div class="card glass-card skeleton"></div>
             <div class="card glass-card skeleton"></div>
             <div class="card glass-card skeleton"></div>
-            <div class="card glass-card skeleton"></div>
         </div>
     </section>
 
@@ -63,25 +60,26 @@
     <section class="home-show-section">
         <div class="home-show-header">
             <h2 class="section-title">Home Show</h2>
+            <!-- 控制组合容器 -->
             <div class="home-show-controls">
                 <div class="search-container">
-                    <input type="text" id="file-search" placeholder="搜索文件..." class="search-input">
                     <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="file-search" placeholder="搜索文件..." class="search-input">
                 </div>
                 <button id="generate-cards" class="generate-btn">
-                    <i class="fas fa-sync-alt"></i>
-                    重新生成
+                    <i class="fas fa-sync-alt" id="sync-icon"></i>
+                    <span>重新生成</span>
                 </button>
             </div>
         </div>
         <div class="home-show-grid" id="file-cards-container">
-            <!-- 文件卡片将在这里动态生成 -->
+            <!-- JS 填充文件卡片 -->
         </div>
     </section>
 </main>
 
 <footer class="glass-footer">
-    <p>Designed by Weisonx. Crafted with Fluid UI.</p>
+    <p>© 2024 Weisonx. Designed with Liquid Glass UI.</p>
 </footer>
 
 <script src="script.js"></script>
