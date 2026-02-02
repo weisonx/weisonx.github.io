@@ -12,27 +12,6 @@
 
 ---
 
-# OneNote
-
-## study
-> [考试和八股文](https://github.com/weisonx/weisonx.github.io/tree/main/OneNote/study/考试与八股文.pdf)
-
-## opt
-> [算法](https://github.com/weisonx/weisonx.github.io/tree/main/OneNote/opt/算法.pdf)
-
----
-
-# ChatGPT
-### Qt
-
-> [Qt多线程与信号槽](https://github.com/weisonx/weisonx.github.io/blob/main/ChatGPT/Qt/Qt%E7%BA%BF%E7%A8%8B%E4%B8%8E%E4%BF%A1%E5%8F%B7%E6%A7%BD.md)
->
-
-### 算法与数据结构
-> [设计模式-ChatGPT4o-mini-加深印象](https://github.com/weisonx/weisonx.github.io/blob/main/ChatGPT/算法与数据结构/设计模式-ChatGPT4o-mini-加深印象.cpp)  
-
----
-
 # C++全栈知识体系 (查看CSDN专栏)
 
 ### C++基础
