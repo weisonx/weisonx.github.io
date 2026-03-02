@@ -115,7 +115,7 @@ async function initHomeShow() {
 
         try {
             const treeRes = await fetch(
-                `https://api.github.com/repos/${GITHUB_USERNAME}/weisonx.github.io/git/trees/master?recursive=1`
+                `https://api.github.com/repos/${GITHUB_USERNAME}/weisonx.github.io/git/trees/main?recursive=1`
             );
             const treeData = await treeRes.json();
 
@@ -129,7 +129,7 @@ async function initHomeShow() {
                 )
                 .map(f => ({
                     ...f,
-                    repoName: weisonx.github.io,
+                    repoName: "weisonx.github.io",
                     previewLoaded: false
                 }));
 
