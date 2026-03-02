@@ -84,7 +84,7 @@ async function fetchGitHub() {
             </a>
         `).join('');
 
-        if (topRepos.length > 0) initHomeShow(topRepos[0]);
+        initHomeShow();
 
     } catch (e) {
         console.error(e);
@@ -102,7 +102,7 @@ let renderIndex = 0;
 let batchObserver = null;
 let previewObserver = null;
 
-async function initHomeShow(repo) {
+async function initHomeShow() {
     const btn = document.getElementById('generate-cards');
     const container = document.getElementById('file-cards-container');
 
@@ -115,7 +115,7 @@ async function initHomeShow(repo) {
 
         try {
             const treeRes = await fetch(
-                `https://api.github.com/repos/${GITHUB_USERNAME}/${repo.name}/git/trees/${repo.default_branch}?recursive=1`
+                `https://api.github.com/repos/${GITHUB_USERNAME}/weisonx.github.io/git/trees/master?recursive=1`
             );
             const treeData = await treeRes.json();
 
@@ -129,7 +129,7 @@ async function initHomeShow(repo) {
                 )
                 .map(f => ({
                     ...f,
-                    repoName: repo.name,
+                    repoName: weisonx.github.io,
                     previewLoaded: false
                 }));
 
