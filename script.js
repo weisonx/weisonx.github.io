@@ -133,9 +133,9 @@ async function initHomeShow() {
                     previewLoaded: false
                 }));
 
-            renderNextBatch();
-            setupBatchObserver();
-            setupPreviewObserver();
+            renderNextBatch();       // 渲染第一批
+            setupBatchObserver();    // 滚动批次懒加载
+            setupPreviewObserver();  // 给当前已有卡片加 preview 观察
 
         } catch (err) {
             console.error(err);
@@ -152,7 +152,7 @@ async function initHomeShow() {
 }
 
 /* ===============================
-   5. 分批渲染卡片
+   5. 分批渲染卡片（修复点：渲染后给新卡片加 previewObserver）
 ================================ */
 function renderNextBatch() {
     const container = document.getElementById('file-cards-container');
@@ -163,10 +163,18 @@ function renderNextBatch() {
     });
 
     renderIndex += FILES_PER_BATCH;
+
+    // 新增：只对刚刚渲染的这批卡片添加预览观察
+    if (previewObserver) {
+        const newCards = container.querySelectorAll(
+            `.file-card:nth-last-child(-n+${slice.length})`
+        );
+        newCards.forEach(c => previewObserver.observe(c));
+    }
 }
 
 /* ===============================
-   6. 卡片 HTML（UI 未改）
+   6. 卡片 HTML
 ================================ */
 function createFileCardHTML(f) {
     const ext = f.path.split('.').pop().toLowerCase();
@@ -184,7 +192,7 @@ function createFileCardHTML(f) {
             <div class="file-card-name">${fileName}</div>
             <div class="file-card-path">${f.path}</div>
             <div class="file-card-content">
-                <span style="opacity:0.4;font-style:italic;">Loading preview...</span>
+                <span style="opacity:0.4;font-style:italic;">预览加载中...</span>
             </div>
         </div>
     `;
@@ -225,14 +233,16 @@ function setupPreviewObserver() {
         });
     }, { rootMargin: '200px' });
 
+    // 给当前页面已存在的所有 file-card 添加观察
     document.querySelectorAll('.file-card').forEach(c => previewObserver.observe(c));
 }
 
 async function loadPreview(card, file) {
     const isPreviewable = /\.(js|ts|py|html|css|md|txt|json|yml|c|cpp|go|rs)$/.test(file.path);
     if (!isPreviewable || file.size > 50000) {
+        file.previewLoaded = true; // 标记为已处理
         card.querySelector('.file-card-content').innerHTML =
-            '<span style="opacity:.4;font-style:italic;">No preview available</span>';
+            '<span style="opacity:.4;font-style:italic;">无法预览该文件</span>';
         return;
     }
 
@@ -245,12 +255,20 @@ async function loadPreview(card, file) {
             file.previewLoaded = true;
             card.querySelector('.file-card-content').innerText =
                 text.substring(0, 120);
+        } else {
+            file.previewLoaded = true;
+            card.querySelector('.file-card-content').innerHTML =
+                '<span style="opacity:.4;font-style:italic;">预览加载失败</span>';
         }
-    } catch {}
+    } catch {
+        file.previewLoaded = true;
+        card.querySelector('.file-card-content').innerHTML =
+            '<span style="opacity:.4;font-style:italic;">预览加载失败</span>';
+    }
 }
 
 /* ===============================
-   9. 搜索（保持原语义）
+   9. 搜索
 ================================ */
 document.getElementById('file-search').addEventListener('input', e => {
     const term = e.target.value.toLowerCase();
@@ -266,6 +284,7 @@ document.getElementById('file-search').addEventListener('input', e => {
         container.insertAdjacentHTML('beforeend', createFileCardHTML(f));
     });
 
+    // 搜索后重新绑定预览观察
     setupPreviewObserver();
 });
 
