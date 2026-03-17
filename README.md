@@ -1,4 +1,6 @@
-# [Github](https://weisonx.github.io/)
+[主页](https://weisonx.github.io/)
+
+---
 
 # Community
 
