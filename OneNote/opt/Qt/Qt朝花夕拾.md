@@ -110,6 +110,16 @@ add_executable加一个WIN32：
 
 改为QFrame。
 
+### 显示主界面
+
+不能单单是show，考虑最小化等，纯qt接口写法：
+```cpp
+window->setWindowState((window->windowState() & ~Qt::WindowMinimized) | Qt::WindowActive);
+window->show();
+window->raise();
+window->activateWindow();
+```
+
 # Qt Designer
 
 ### 布局放置
