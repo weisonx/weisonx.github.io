@@ -1,5 +1,36 @@
 下面是 Rust 常见容器及其基本操作介绍，主要来自标准库 `std::collections`，也包括数组、切片、字符串等常用数据结构。
 
+# 公共操作
+
+| 操作类型 | 操作说明 | Vec<T> / 切片 | String / &str | HashMap<K, V> | HashSet<T> |
+|---|---|---|---|---|---|
+| 判空 | 检查是否为空 | v.is_empty() | s.is_empty() | m.is_empty() | s.is_empty() |
+| 长度 | 获取元素/字节数量 | v.len() | s.len() (字节数) | m.len() | s.len() |
+| 存在性 | 检查是否存在某元素/键 | v.contains(&val) | s.contains("sub") | m.contains_key(&k) | s.contains(&val) |
+| 安全获取 | 按索引或键取值 (返回 Option) | v.get(index) | s.get(range) (切片) | m.get(&k) | 无 (直接用 contains) |
+| 清空 | 清除所有内容 (保留内存) | v.clear() | s.clear() | m.clear() | s.clear() |
+| 预分配 | 创建带容量的容器 | Vec::with_capacity(n) | String::with_capacity(n) | HashMap::with_capacity(n) | HashSet::with_capacity(n) |
+| 迭代器 | 获取只读迭代器 | v.iter() | s.chars() / .bytes() | m.iter() | s.iter() |
+
+## 原生数组
+
+| 操作类型 | 操作说明 | 原生数组 [T; N] (如 [1, 2, 3]) | 动态数组 Vec<T> |
+|---|---|---|---|
+| 判空 | 检查是否为空 | ⚠️ a.is_empty() (固定长度为0时才为true) | v.is_empty() |
+| 长度 | 获取元素数量 | a.len() (编译期固定，$O(1)$) | v.len() (运行期动态，$O(1)$) |
+| 存在性 | 检查是否存在某元素 | a.contains(&val) ($O(n)$ 线性查找) | v.contains(&val) ($O(n)$ 线性查找) |
+| 安全获取 | 按索引取值 (返回 Option) | a.get(index) | v.get(index) |
+| 清空 | 清除所有内容 | ❌ 不支持 (长度固定无法清空) | v.clear() |
+| 预分配 | 创建带容量的容器 | ❌ 不支持 (声明时即固定大小) | Vec::with_capacity(n) |
+| 迭代器 | 获取只读迭代器 | a.iter() 或直接 for x in a | v.iter() |
+
+------------------------------
+## 数组是固定长度的底层类型，为什么它也能直接调用 .len()、.contains() 和 .get() 呢？
+这得益于 Rust 的 Deref 特征：
+
+   1. 原生数组 [T; N] 在调用这些方法时，会自动隐式强制转换为切片 &[T]（Slice）。
+   2. len()、contains()、get()、is_empty() 这些方法，实际上全都是实现给切片 [T] 的。
+   3. 因为 Vec<T> 也能自动转换为 &[T]，所以数组和 Vec 在这些只读操作上的语法完全一模一样
 ---
 
 # 1. 数组 Array
