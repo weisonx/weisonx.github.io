@@ -1,10 +1,10 @@
 
-
-
 ------------------------------
 2026-7-30
 
-## Claude Code 配置文件完整清单## 1. 软件行为与控制（Settings & MCP）
+## Claude Code 配置文件完整清单
+
+## 1. 软件行为与控制（Settings & MCP）
 
 * ~/.claude/settings.json（全局偏好设置）
 * .claude/settings.json（项目级共享设置）
