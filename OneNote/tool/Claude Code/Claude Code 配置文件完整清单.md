@@ -14,22 +14,22 @@
 
 ## 2. 子代理与自定义技能（Agents & Skills）
 
-* ~/.claude/agents/<agent-name>.md（全局自定义 Agent）
-* .claude/agents/<agent-name>.md（项目级自定义 Agent）
-* ~/.claude/skills/<skill-name>/SKILL.md（全局自定义技能）
-* skills/<skill-name>/SKILL.md（项目级自定义技能）
-* ~/.claude/commands/*.md（全局简易斜杠命令）
-* .claude/commands/*.md（项目级简易斜杠命令）
+* `~/.claude/agents/<agent-name>.md`（全局自定义 Agent）
+* `.claude/agents/<agent-name>.md`（项目级自定义 Agent）
+* `~/.claude/skills/<skill-name>/SKILL.md`（全局自定义技能）
+* `.claude/skills/<skill-name>/SKILL.md`（项目级自定义技能）
+* `~/.claude/commands/*.md`（全局简易斜杠命令）
+* `.claude/commands/*.md`（项目级简易斜杠命令）
 
 ## 3. 指令、规范与规则（Instructions & Rules）
 
-* ~/.claude/CLAUDE.md（全局代码规范）
+* `~/.claude/CLAUDE.md`（全局代码规范）
 * CLAUDE.md（项目级代码规范与构建指令）
 * CLAUDE.local.md（项目本地私有规范）
-* .claude/rules/*.md（项目模块化/路径特定规则）
+* `.claude/rules/*.md`（项目模块化/路径特定规则）
 
 ## 4. 自动记忆（Auto-Memory）
 
-* ~/.claude/memory/（跨项目长期记忆目录）
-* ~/.claude/projects/<project-id>/memory/MEMORY.md（项目动态自动记忆索引表）
-* ~/.claude/projects/<project-id>/memory/*.md（项目动态自动记忆明细笔记）
+* `~/.claude/memory/`（跨项目长期记忆目录）
+* `~/.claude/projects/<project-id>/memory/MEMORY.md`（项目动态自动记忆索引表）
+* `~/.claude/projects/<project-id>/memory/*.md`（项目动态自动记忆明细笔记）
