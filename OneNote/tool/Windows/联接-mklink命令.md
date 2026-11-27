@@ -19,7 +19,11 @@
 ## 第三步：执行联接命令
 在打开的黑色 CMD 窗口中，复制并运行以下命令（注意：请将 你的用户名 修改为你电脑的实际用户名）：
 
-`mklink /d "C:\Users\你的用户名\.vscode" "D:\.vscode"`
+`mklink /j "C:\Users\你的用户名\.vscode" "D:\.vscode"`
+
+MKLINK [[/D] | [/H] | [/J]] <Link> <Target>
+
+建议用/J参数。
 
 提示：如果你的新路径不是 D 盘根目录，请将 "D:\.vscode" 修改为你实际粘贴的目标路径（例如 "E:\Software\.vscode"）。
 ------------------------------
